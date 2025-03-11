@@ -1,7 +1,13 @@
 import React from "react";
+import { AddNewPassword, PasswordsList } from "./components";
 
 const HomeScreen = () => {
-  return <div>HomeScreen</div>;
+  return (
+    <div>
+      <PasswordsList />
+      <AddNewPassword />
+    </div>
+  );
 };
 
 export default HomeScreen;
