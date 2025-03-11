@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { TPassword } from "@/types";
 
 type Props = {
-  onSave: (username: string, password: string, website: string) => void;
+  onSave: (payload: TPassword) => void;
 };
 
 const AddNewPassword = ({ onSave }: Props) => {
@@ -11,6 +12,12 @@ const AddNewPassword = ({ onSave }: Props) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const isFormValid = website && password && username;
+  const savePassword = () => {
+    onSave({ website, username, password });
+    setUsername("");
+    setWebsite("");
+    setUsername("");
+  };
   return (
     <div className="w-full md:w-1/2 m-auto flex flex-col gap-4">
       <Input
@@ -29,10 +36,7 @@ const AddNewPassword = ({ onSave }: Props) => {
         value={password}
         onChange={(e) => setPassword(e.target.value)}
       />
-      <Button
-        disabled={!isFormValid}
-        onClick={() => onSave(username, password, website)}
-      >
+      <Button disabled={!isFormValid} onClick={savePassword}>
         Save Securely
       </Button>
     </div>
